@@ -7,25 +7,28 @@
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control">
-                          <input class="input" type="text" placeholder="e.g Alex Smith">
+                          <input class="input" type="text" placeholder="e.g Alex Smith" v-model="name">
                         </div>
                       </div>
                       
                       <div class="field">
                         <label class="label">Email</label>
                         <div class="control">
-                          <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
+                          <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com" v-model="email">
                         </div>
                       </div>
 
                       <div class="field">
                             <label class="label">Password</label>
                             <div class="control">
-                              <input class="input" type="password">
+                              <input class="input" type="password" v-model="password">
                             </div>
                           </div>
                           <button type="submit" class="button is-primary">Register</button>
                 </form>
+                <div class="notification is-danger" v-if="error">
+                   {{ error }} 
+                </div>
             </div>
         </div>
     </div>
@@ -33,16 +36,23 @@
 
 <script>
 export default {
-    
+  data() {
+    return {
+      name: '',
+      email: '',
+      password: '',
+      error: ''
+    }
+  },
     name: 'Register',
     methods: {
         register(){
-            const Swal = require('sweetalert2')
-            Swal.fire(
-              'Good job!',
-              'You clicked the button!',
-              'success'
-            )   
+          if(name && email){
+              //Send form
+          }else{
+            //Send Error
+            this.error = 'Missing data in register!'
+          }   
         }
     }
 }
